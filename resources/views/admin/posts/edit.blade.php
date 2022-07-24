@@ -18,11 +18,19 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="title">Contenuto</label>
+                        <label for="content">Contenuto</label>
                         <textarea class="form-control @error('content') is-invalid @enderror" name="content" id="content" cols="30" rows="10">{{old('content', $post->content)}}"</textarea>
                         @error('content')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control" name="category_id" id="category" >
+                            <option value="">Select category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}"{{old('category_id', $post->category_id) == $category->id ? 'selected' : ''}}>{{$category->name}}</option>  
+                            @endforeach
+                        </select>  
                     </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input @error('published') is-invalid @enderror" id="published" name="published">

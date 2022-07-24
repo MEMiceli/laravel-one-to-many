@@ -23,6 +23,15 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select class="form-control" name="category_id" id="category" >
+                            <option value="">Select category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{$category->id}}"{{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>  
+                            @endforeach
+                        </select>    
+                    </div>
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input @error('published') is-invalid @enderror" id="published" name="published">
                         <label class="form-check-label" for="published" value="{{old('published') ? 'checked' : ''}}">Pubblica</label>
